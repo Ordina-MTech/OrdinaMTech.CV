@@ -19,6 +19,10 @@ namespace OrdinaMTech.Cv.Api.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Upload een nieuwe foto van max. 500kB
+        /// </summary>
+        /// <param name="file">De nieuwe foto</param>
         [HttpPost]
         [Route("personalia/foto/upload")]
         public IActionResult Upload([FromForm]IFormFile file)
@@ -39,10 +43,14 @@ namespace OrdinaMTech.Cv.Api.Controllers
             }
             cv.Personalia.Foto = contents;
             cv.Save();
-            return Ok();
+            return Accepted();
         }
 
+        /// <summary>
+        /// Vraag het CV op
+        /// </summary>
         [HttpGet]
+        
         public IActionResult Get()
         {
             var result = new Models.Cv();
@@ -50,6 +58,9 @@ namespace OrdinaMTech.Cv.Api.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Reset het CV naar de defaults
+        /// </summary>
         [HttpPut]
         public IActionResult Put()
         {
