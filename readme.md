@@ -1,8 +1,11 @@
-# MTech programmeertest
+# Ordina MTech programmeertest
 
-Deze Visual Studio 2019 solution in .NET Core 3.1.2 is bedoeld voor een programmeertest bij de intake van nieuwe Ordina MTech ontwikkelaars.
-De solution bestaat uit een WebApi voor het beheer van een CV die wordt opgeslagen in een JSON bestand en een React webclient die het CV in een leesbaar formaat toont.
+Deze Visual Studio 2019 solution is bedoeld voor een programmeertest bij de intake van nieuwe Ordina MTech ontwikkelaars.
+De solution bestaat uit een in ASP.NET Core 3.1.2 WebApi voor het beheer van een CV die wordt opgeslagen in een JSON bestand en een ReactJS webclient die het CV in een leesbaar formaat toont.
 Het is in deze webclient ook mogelijk om een nieuwe foto voor het CV te uploaden.
+
+Een werkende versie van de applicatie staat hier: https://ordinamtechcvwebclient.azurewebsites.net/
+En hier vind je de WebApi: https://ordinamtechcvwebapi.azurewebsites.net/
 
 In de solution zijn expres fouten gemaakt in het design en in de programmacode.
 
