@@ -45,7 +45,7 @@ class UploadImage extends React.Component {
             body: data
         })
             .then(response => {
-                if (response.status === 202) {
+                if (response.status === 200) {
                     that.getBase64(file);
                 }
                 else {

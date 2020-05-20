@@ -43,7 +43,7 @@ namespace OrdinaMTech.Cv.Api.Controllers
             }
             cv.Personalia.Foto = contents;
             cv.Save();
-            return Accepted();
+            return Ok();
         }
 
         /// <summary>
