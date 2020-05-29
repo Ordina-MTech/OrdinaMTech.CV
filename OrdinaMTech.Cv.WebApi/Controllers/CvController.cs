@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Logging;
+using OrdinaMTech.Cv.WebApi.Filters;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -19,10 +20,6 @@ namespace OrdinaMTech.Cv.Api.Controllers
             _logger = logger;
         }
 
-        /// <summary>
-        /// Upload een nieuwe foto van max. 500kB
-        /// </summary>
-        /// <param name="file">De nieuwe foto</param>
         [HttpPost]
         [Route("personalia/foto/upload")]
         public IActionResult Upload([FromForm]IFormFile file)
@@ -46,11 +43,8 @@ namespace OrdinaMTech.Cv.Api.Controllers
             return Ok();
         }
 
-        /// <summary>
-        /// Vraag het CV op
-        /// </summary>
+        [AuditFilter]
         [HttpGet]
-        
         public IActionResult Get()
         {
             var result = new Models.Cv();
@@ -58,9 +52,6 @@ namespace OrdinaMTech.Cv.Api.Controllers
             return Ok(result);
         }
 
-        /// <summary>
-        /// Reset het CV naar de defaults
-        /// </summary>
         [HttpPut]
         public IActionResult Put()
         {
