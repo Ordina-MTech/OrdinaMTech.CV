@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using OrdinaMTech.Cv.Shared.Enums;
 using OrdinaMTech.Cv.Shared.Models;
+using OrdinaMTech.Cv.WebApi.Filters;
 using System;
 using System.Collections.Generic;
 
@@ -47,12 +48,12 @@ namespace OrdinaMTech.Cv.Api.Controllers
             return Ok();
         }
 
+        [AuditFilter]
         /// <summary>
         /// Vraag het CV op
         /// </summary>
         [HttpGet]
-        
-        public ActionResult<Shared.Models.Cv> Get()
+        public IActionResult Get()
         {
             var result = new Shared.Models.Cv();
             Load(result);
