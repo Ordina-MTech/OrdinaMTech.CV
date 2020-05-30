@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace OrdinaMTech.Cv.WebApi.Services
+{
+    public static class AuditLog
+    {
+        private static string _LaatstGeraadpleegdDoor;
+
+        public static string LaatstGeraadpleegdDoor
+        {
+            get
+            {
+                return _LaatstGeraadpleegdDoor;
+            }
+            set
+            {
+                if (_LaatstGeraadpleegdDoor == null)
+                {
+                    _LaatstGeraadpleegdDoor = value;
+                }
+            }
+        }
+    }
+}

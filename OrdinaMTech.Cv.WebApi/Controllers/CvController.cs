@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Logging;
+using OrdinaMTech.Cv.WebApi.Filters;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -46,11 +47,11 @@ namespace OrdinaMTech.Cv.Api.Controllers
             return Ok();
         }
 
+        [AuditFilter]
         /// <summary>
         /// Vraag het CV op
         /// </summary>
         [HttpGet]
-        
         public IActionResult Get()
         {
             var result = new Models.Cv();
