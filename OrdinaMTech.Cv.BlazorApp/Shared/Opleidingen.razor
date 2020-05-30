@@ -1,0 +1,28 @@
+﻿@if (opleidingen != null)
+{
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="education">
+        <div class="w-100">
+            <h2 class="mb-5">Opleiding</h2>
+            @foreach (var opleiding in opleidingen)
+            {
+                <div key=@opleiding.id class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="resume-content">
+                        <h3 class="mb-0">@opleiding.School</h3>
+                        <div class="subheading mb-3">@opleiding.Niveau</div>
+                        <div>Diploma: @(opleiding.Diploma ? "Ja" : "Nee")</div>
+                    </div>
+                    <div class="resume-date text-md-right">
+                        <span class="text-primary">@opleiding.DatumVan.ToString("MM/yyyy") - @opleiding.DatumTm.ToString("MM/yyyy")</span>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+    <hr class="m-0" />
+}
+
+@code {
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public List<OrdinaMTech.Cv.Shared.Models.Opleiding> opleidingen { get; set; }
+}

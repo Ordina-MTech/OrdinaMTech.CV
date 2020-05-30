@@ -1,0 +1,32 @@
+﻿@page "/"
+@using OrdinaMTech.Cv.BlazorApp.Shared;
+@using OrdinaMTech.Cv.Shared.Models;
+@inject Data.ApiService apiService;
+@inject IJSRuntime jsRuntime;
+
+@if (cv != null)
+{
+    <NavMenu naam=@cv.Personalia.Naam />
+    <div className="container-fluid p-0">
+        <Personalia personalia=@cv.Personalia />
+        <Opleidingen opleidingen=@cv.Opleidingen />
+        <Cursussen cursussen=@cv.Cursussen />
+        <Werkervaring werkervaring=@cv.Werkervaring />
+        <Kennis kennis=@cv.Kennis />
+    </div>
+}
+
+@code {
+    private Cv cv;
+
+    protected override async Task OnInitializedAsync()
+    {
+        cv = await apiService.GetCvAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await jsRuntime.InvokeVoidAsync("renderjQueryComponents");
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}

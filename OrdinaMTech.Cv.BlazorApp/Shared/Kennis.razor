@@ -1,0 +1,27 @@
+﻿@if (kennis != null)
+{
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="skills">
+        <div class="w-100">
+            <h2 class="mb-5">Kennis</h2>
+            @foreach (var kennisitem in kennis)
+            {
+                <div key=@kennisitem.id class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="resume-content">
+                        <h3 class="mb-0">@kennisitem.Kennisgebied</h3>
+                        <span class=@("fa fa-star " + ((int)kennisitem.Kennisniveau >= 1 ? " checked" : "" ))></span>
+                        <span class=@("fa fa-star " + ((int)kennisitem.Kennisniveau >= 2 ? " checked" : "" ))></span>
+                        <span class=@("fa fa-star " + ((int)kennisitem.Kennisniveau >= 3 ? " checked" : "" ))></span>
+                        <span class=@("fa fa-star " + ((int)kennisitem.Kennisniveau >= 4 ? " checked" : "" ))></span>
+                        <span class=@("fa fa-star " + ((int)kennisitem.Kennisniveau >= 5 ? " checked" : "" ))></span>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+}
+
+@code {
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public List<OrdinaMTech.Cv.Shared.Models.Kennis> kennis { get; set; }
+}

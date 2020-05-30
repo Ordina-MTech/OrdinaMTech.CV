@@ -1,0 +1,12 @@
+﻿<div class="profile-pic float-right">
+    <img class="img-profile rounded-circle img-fluid mr-2" src=@("data:image/png;base64," + Convert.ToBase64String(foto)) alt="Foto" />
+    <label class="btn">
+        <span class="edit fas fa-edit fa-lg"></span>
+        <input type="file" class="d-none" onChange="" />
+    </label>
+</div>
+@code {
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public byte[] foto { get; set; }
+}

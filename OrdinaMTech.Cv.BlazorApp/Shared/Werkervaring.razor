@@ -1,0 +1,28 @@
+﻿@if (werkervaring != null)
+{
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+        <div class="w-100">
+            <h2 class="mb-5">Werkervaring</h2>
+            @foreach (var ervaring in werkervaring)
+            {
+                <div key=@ervaring.id class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="resume-content">
+                        <h3 class="mb-0">@ervaring.Functie</h3>
+                        <div class="subheading mb-3">@ervaring.Organisatie</div>
+                        <p>@ervaring.Beschrijving</p>
+                    </div>
+                    <div class="resume-date text-md-right">
+                        <span class="text-primary">@ervaring.DatumVan.ToString("MM/yyyy") - @(ervaring.DatumTm != null ? ervaring.DatumTm.Value.ToString("MM/yyyy") : "heden")</span>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+    <hr class="m-0" />
+}
+
+@code {
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public List<OrdinaMTech.Cv.Shared.Models.Ervaring> werkervaring { get; set; }
+}

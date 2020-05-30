@@ -1,0 +1,22 @@
+﻿@if (personalia != null)
+{
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+        <div class="w-100">
+            <UploadImage foto=@personalia.Foto />
+            <h1 class="mb-0">@personalia.Naam</h1>
+            <div class="subheading mb-5">
+                Geboortedatum: @personalia.Geboortedatum.ToString("dd-MM-yyyy")
+                <br />
+                Woonplaats: @personalia.Woonplaats
+            </div>
+            <p class="lead mb-5">Hobbies: @personalia.Hobbies</p>
+        </div>
+    </section>
+    <hr class="m-0" />
+}
+
+@code {
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public OrdinaMTech.Cv.Shared.Models.Personalia personalia { get; set; }
+}
