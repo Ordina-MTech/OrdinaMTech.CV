@@ -48,16 +48,16 @@ namespace OrdinaMTech.Cv.Api.Controllers
             return Ok();
         }
 
-        [AuditFilter]
         /// <summary>
         /// Vraag het CV op
         /// </summary>
+        [AuditFilter]
         [HttpGet]
         public IActionResult Get()
         {
             var result = new Shared.Models.Cv();
             Load(result);
-            return result;
+            return Ok(result);
         }
 
         /// <summary>

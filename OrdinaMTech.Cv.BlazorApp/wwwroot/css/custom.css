@@ -18,6 +18,7 @@
     right: 12%;
     top: 0;
     display: none;
+    cursor: pointer;
 }
 
     .edit a {

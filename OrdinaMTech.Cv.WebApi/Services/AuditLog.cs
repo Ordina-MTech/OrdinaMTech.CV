@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace OrdinaMTech.Cv.WebApi.Services
+﻿namespace OrdinaMTech.Cv.WebApi.Services
 {
     public static class AuditLog
     {

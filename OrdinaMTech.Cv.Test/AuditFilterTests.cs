@@ -10,10 +10,8 @@ using Moq;
 using OrdinaMTech.Cv.Api.Controllers;
 using OrdinaMTech.Cv.WebApi.Filters;
 using OrdinaMTech.Cv.WebApi.Services;
-using System;
 using System.Collections.Generic;
 using System.Security.Claims;
-using System.Text;
 
 namespace OrdinaMTech.Cv.Test
 {

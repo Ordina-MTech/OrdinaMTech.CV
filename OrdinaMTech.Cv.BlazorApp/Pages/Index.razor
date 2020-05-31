@@ -1,6 +1,5 @@
 ﻿@page "/"
 @using OrdinaMTech.Cv.BlazorApp.Shared;
-@using OrdinaMTech.Cv.Shared.Models;
 @inject Data.ApiService apiService;
 @inject IJSRuntime jsRuntime;
 
@@ -17,7 +16,7 @@
 }
 
 @code {
-    private Cv cv;
+    private OrdinaMTech.Cv.Shared.Models.Cv cv;
 
     protected override async Task OnInitializedAsync()
     {

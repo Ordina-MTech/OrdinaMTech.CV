@@ -1,12 +1,53 @@
-﻿<div class="profile-pic float-right">
-    <img class="img-profile rounded-circle img-fluid mr-2" src=@("data:image/png;base64," + Convert.ToBase64String(foto)) alt="Foto" />
+﻿@using BlazorInputFile;
+@inject Data.ApiService apiService;
+
+<div class="profile-pic float-right">
+    @if (string.IsNullOrEmpty(status))
+    {
+        <img class="img-profile rounded-circle img-fluid mr-2" src=@("data:image/png;base64," + Convert.ToBase64String(foto)) alt="Foto" />
+    }
+    else
+    {
+        @status
+    }
     <label class="btn">
         <span class="edit fas fa-edit fa-lg"></span>
-        <input type="file" class="d-none" onChange="" />
+        <span class="d-none"><InputFile OnChange="HandleSelection" /></span>
     </label>
 </div>
+
 @code {
     // Demonstrates how a parent component can supply parameters
     [Parameter]
     public byte[] foto { get; set; }
+
+    string status;
+
+    async Task HandleSelection(IFileListEntry[] files)
+    {
+        var bytes = new byte[0];
+        var file = files.FirstOrDefault();
+        if (file != null)
+        {
+            status = "Uploading...";
+            var fileStreamContent = new StreamContent(file.Data);
+            bytes = await fileStreamContent.ReadAsByteArrayAsync();
+            using (var formData = new MultipartFormDataContent())
+            {
+                // Add the HttpContent objects to the form data
+                formData.Add(fileStreamContent, "file", file.Name);
+
+                var response = await apiService.UploadFotoAsync(formData);
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    status = string.Empty;
+                    foto = bytes;
+                }
+                else
+                {
+                    status = await response.Content.ReadAsStringAsync();
+                }
+            }
+        }
+    }
 }
