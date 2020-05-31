@@ -23,7 +23,7 @@ namespace OrdinaMTech.Cv.Api.Controllers
         }
 
         /// <summary>
-        /// Upload een nieuwe foto van max. 500kB
+        /// Upload een nieuwe foto van max. 2000kB
         /// </summary>
         /// <param name="file">De nieuwe foto</param>
         [HttpPost]
