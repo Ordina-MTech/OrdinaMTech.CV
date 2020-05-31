@@ -7,6 +7,7 @@ using OrdinaMTech.Cv.Shared.Models;
 using OrdinaMTech.Cv.WebApi.Filters;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace OrdinaMTech.Cv.Api.Controllers
 {
@@ -29,23 +30,29 @@ namespace OrdinaMTech.Cv.Api.Controllers
         [Route("personalia/foto/upload")]
         public IActionResult Upload([FromForm]IFormFile file)
         {
-            var maxSize = 1024 * 500;
+            var maxSize = 1024 * 2000;
             if (file.Length > maxSize)
             {
                 return new UnprocessableEntityObjectResult("Bestand mag niet groter zijn dan " + maxSize / 1024 + "kB");
             }
-
-            var cv = new Shared.Models.Cv();
-            Load(cv);
-            using var fileStream = file.OpenReadStream();
-            var contents = new byte[file.Length];
-            for (var i = 0; i < file.Length; i++)
+            
+            try
             {
-                contents[i] = (byte)fileStream.ReadByte();
+                using var fileStream = file.OpenReadStream();
+                var bmp = ResizeImage(new Bitmap(fileStream));
+                var converter = new ImageConverter();
+                var contents = (byte[])converter.ConvertTo(bmp, typeof(byte[]));
+
+                var cv = new Shared.Models.Cv();
+                Load(cv);
+                cv.Personalia.Foto = contents;
+                Save(cv);
+                return Ok(contents);
             }
-            cv.Personalia.Foto = contents;
-            Save(cv);
-            return Ok();
+            catch
+            {
+                return new UnprocessableEntityObjectResult("Bestand is geen geldig plaatje");
+            }
         }
 
         /// <summary>
@@ -118,6 +125,20 @@ namespace OrdinaMTech.Cv.Api.Controllers
             cv.Werkervaring = data.Werkervaring;
             cv.Talen = data.Talen;
             cv.Kennis = data.Kennis;
+        }
+
+        private Bitmap ResizeImage(Bitmap src)
+        {
+            var bmp = new Bitmap(300, 300);
+            var g = Graphics.FromImage(bmp);
+
+            var scale = Math.Max((float)src.Width / 300.0f, (float)src.Height / 300.0f);
+            var p = new PointF(300.0f - ((float)src.Width / scale), 300.0f - ((float)src.Height / scale));
+            var size = new SizeF((float)src.Width / scale, (float)src.Height / scale);
+
+            g.DrawImage(src, new RectangleF(p, size));
+
+            return bmp;
         }
     }
 }

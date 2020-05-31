@@ -25,7 +25,7 @@ namespace OrdinaMTech.Cv.BlazorApp
             services.AddServerSideBlazor();
             services.AddHttpClient<ApiService>(client =>
             {
-                client.BaseAddress = new Uri("http://localhost:5000/");
+                client.BaseAddress = Configuration.GetValue<Uri>("WebApiUrl");
             });
         }
 

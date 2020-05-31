@@ -9,23 +9,7 @@ class UploadImage extends React.Component {
             error: null
         }
         this.handleChange = this.handleChange.bind(this)
-        this.getBase64 = this.getBase64.bind(this)
         this.uploadFile = this.uploadFile.bind(this)
-    }
-    getBase64(file) {
-        var that = this;
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function () {
-            that.setState({
-                file: reader.result,
-                isLoaded: true,
-                error: null,
-            });
-        };
-        reader.onerror = function (error) {
-            console.log('Error: ', error);
-        };
     }
     handleChange(event) {
         this.setState({
@@ -46,15 +30,22 @@ class UploadImage extends React.Component {
         })
             .then(response => {
                 if (response.status === 200) {
-                    that.getBase64(file);
+                    response.json()
+                        .then(data => {
+                            that.setState({
+                                file: 'data:image/png;base64,' + data,
+                                isLoaded: true,
+                                error: null,
+                            });
+                        })                    
                 }
                 else {
                     response.text()
-                        .then(response => {
+                        .then(data => {
                             that.setState({
                                 file: null,
                                 isLoaded: false,
-                                error: response
+                                error: data
                             })
                         });                    
                 }

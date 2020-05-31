@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
 using System.Net.Http;
-using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 
 namespace OrdinaMTech.Cv.BlazorApp.Data

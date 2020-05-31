@@ -23,5 +23,4 @@ function renderjQueryComponents() {
     $('body').scrollspy({
         target: '#sideNav'
     });
-
 }

@@ -1,4 +1,6 @@
 ﻿@using BlazorInputFile;
+@using Newtonsoft.Json;
+@using System.IO;
 @inject Data.ApiService apiService;
 
 <div class="profile-pic float-right">
@@ -8,6 +10,7 @@
     }
     else
     {
+        <br /><br />
         @status
     }
     <label class="btn">
@@ -41,7 +44,9 @@
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     status = string.Empty;
-                    foto = bytes;
+                    using var stream = await response.Content.ReadAsStreamAsync();
+                    var jsonReader = new StreamReader(stream).ReadToEnd();
+                    foto = JsonConvert.DeserializeObject<byte[]>(jsonReader);
                 }
                 else
                 {
