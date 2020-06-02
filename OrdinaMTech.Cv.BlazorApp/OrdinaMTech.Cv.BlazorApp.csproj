@@ -5,20 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\favicon.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\favicon.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="BlazorInputFile" Version="0.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\OrdinaMtech.CV.Shared\OrdinaMtech.CV.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
