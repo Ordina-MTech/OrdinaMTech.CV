@@ -7,21 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Enums\**" />
-    <Compile Remove="Models\**" />
-    <Content Remove="Enums\**" />
-    <Content Remove="Models\**" />
-    <EmbeddedResource Remove="Enums\**" />
-    <EmbeddedResource Remove="Models\**" />
-    <None Remove="Enums\**" />
-    <None Remove="Models\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="pasfoto.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="pasfoto.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -37,6 +22,5 @@
   <ItemGroup>
     <ProjectReference Include="..\OrdinaMtech.CV.Shared\OrdinaMtech.CV.Shared.csproj" />
   </ItemGroup>
-
 
 </Project>
