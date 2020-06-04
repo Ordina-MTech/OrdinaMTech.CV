@@ -20,7 +20,7 @@ Het verloop van de test is als volgt:
 2. Vervolgens bouwt hij/zij in 30 minuten een eenvoudige nieuwe functionaliteit of unit test in een pair-programming sessie met de MTech collega.
 3. Tenslotte volg een evaluatie van 10 minuten.
 
-Bronvermelding:
+Bronvermelding:\
 Het gebruikte CV template komt van: https://startbootstrap.com/themes/resume/
 \
 En de pasfoto komt van: https://thispersondoesnotexist.com/
