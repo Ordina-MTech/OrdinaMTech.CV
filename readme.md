@@ -18,7 +18,7 @@ De kandidaat krijgt een aantal dagen van te voren de link naar het GitHub projec
 Het verloop van de test is als volgt:
 1. De kandidaat doet in 15 minuten een peer review van deze code samen met een MTech collega.
 2. Vervolgens bouwt hij/zij in 30 minuten een eenvoudige nieuwe functionaliteit of unit test in een pair-programming sessie met de MTech collega.
-3. Tenslotte volg een evaluatie van 10 minuten.
+3. Tenslotte volgt een evaluatie van 10 minuten.
 
 Bronvermelding:\
 Het gebruikte CV template komt van: https://startbootstrap.com/themes/resume/
