@@ -5,7 +5,7 @@
             <h2 class="mb-5">Kennis</h2>
             @foreach (var kennisitem in kennis)
             {
-                <div key=@kennisitem.id class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div key=@kennisitem.Id class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                     <div class="resume-content">
                         <h3 class="mb-0">@kennisitem.Kennisgebied</h3>
                         <span class=@("fa fa-star " + ((int)kennisitem.Kennisniveau >= 1 ? " checked" : "" ))></span>
