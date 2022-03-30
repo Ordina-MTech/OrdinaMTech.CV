@@ -85,26 +85,26 @@ namespace OrdinaMTech.Cv.Api.Controllers
             };
 
             cv.Opleidingen = new List<Opleiding>();
-            cv.Opleidingen.Add(new Opleiding { id = 1, School = "St. Gregorius College Utrecht", Niveau = "VWO", Diploma = true, DatumVan = new DateTime(2007, 9, 1), DatumTm = new DateTime(2013, 6, 1) });
-            cv.Opleidingen.Add(new Opleiding { id = 2, School = "Hogeschool Utrecht Informatica", Niveau = "HBO", Diploma = true, DatumVan = new DateTime(2013, 9, 1), DatumTm = new DateTime(2018, 3, 1) });
+            cv.Opleidingen.Add(new Opleiding { Id = 1, School = "St. Gregorius College Utrecht", Niveau = "VWO", Diploma = true, DatumVan = new DateTime(2007, 9, 1), DatumTm = new DateTime(2013, 6, 1) });
+            cv.Opleidingen.Add(new Opleiding { Id = 2, School = "Hogeschool Utrecht Informatica", Niveau = "HBO", Diploma = true, DatumVan = new DateTime(2013, 9, 1), DatumTm = new DateTime(2018, 3, 1) });
 
             cv.Cursussen = new List<Cursus>();
-            cv.Cursussen.Add(new Cursus { id = 1, Naam = "AZ-203 Developing Solutions for Microsot Azure", Instituut = "Microsoft", Certificaat = true, Datum = new DateTime(2020, 1, 24) });
-            cv.Cursussen.Add(new Cursus { id = 2, Naam = "Scrum Foundation", Instituut = "Scrum.org", Certificaat = true, Datum = new DateTime(2019, 5, 15) });
+            cv.Cursussen.Add(new Cursus { Id = 1, Naam = "AZ-203 Developing Solutions for Microsot Azure", Instituut = "Microsoft", Certificaat = true, Datum = new DateTime(2020, 1, 24) });
+            cv.Cursussen.Add(new Cursus { Id = 2, Naam = "Scrum Foundation", Instituut = "Scrum.org", Certificaat = true, Datum = new DateTime(2019, 5, 15) });
 
             cv.Werkervaring = new List<Ervaring>();
-            cv.Werkervaring.Add(new Ervaring { id = 1, Functie = "Stagiaire", Project = "Interne CV applicatie", Beschrijving = "Ontwerp en bouw van een interne CV application in .NET Core en ReactJS.", Organisatie = "FutureTech", DatumVan = new DateTime(2017, 9, 1), DatumTm = new DateTime(2018, 1, 31) });
-            cv.Werkervaring.Add(new Ervaring { id = 2, Functie = "Junior .NET developer", Project = "Interne CV applicatie", Beschrijving = "Ontwerp en bouw van een interne CV applicatie in Azure", Organisatie = "MTech", DatumVan = new DateTime(2018, 4, 1), DatumTm = null });
+            cv.Werkervaring.Add(new Ervaring { Id = 1, Functie = "Stagiaire", Project = "Interne CV applicatie", Beschrijving = "Ontwerp en bouw van een interne CV application in .NET Core en ReactJS.", Organisatie = "FutureTech", DatumVan = new DateTime(2017, 9, 1), DatumTm = new DateTime(2018, 1, 31) });
+            cv.Werkervaring.Add(new Ervaring { Id = 2, Functie = "Junior .NET developer", Project = "Interne CV applicatie", Beschrijving = "Ontwerp en bouw van een interne CV applicatie in Azure", Organisatie = "MTech", DatumVan = new DateTime(2018, 4, 1), DatumTm = null });
 
             cv.Talen = new List<Taal>();
-            cv.Talen.Add(new Taal() { id = 1, Naam = "Nederlands", Mondeling = Taalniveau.Excellent, Schriftelijk = Taalniveau.Excellent });
-            cv.Talen.Add(new Taal() { id = 2, Naam = "Engels", Mondeling = Taalniveau.Goed, Schriftelijk = Taalniveau.Goed });
+            cv.Talen.Add(new Taal() { Id = 1, Naam = "Nederlands", Mondeling = Taalniveau.Excellent, Schriftelijk = Taalniveau.Excellent });
+            cv.Talen.Add(new Taal() { Id = 2, Naam = "Engels", Mondeling = Taalniveau.Goed, Schriftelijk = Taalniveau.Goed });
 
             cv.Kennis = new List<Kennis>();
-            cv.Kennis.Add(new Kennis() { id = 1, Kennisgebied = "Scrum", Jaren = 2, Kennisniveau = Kennisniveau.Gemiddeld });
-            cv.Kennis.Add(new Kennis() { id = 2, Kennisgebied = "C#", Jaren = 3, Kennisniveau = Kennisniveau.Ervaren });
-            cv.Kennis.Add(new Kennis() { id = 3, Kennisgebied = "ReactJS", Jaren = 1, Kennisniveau = Kennisniveau.Basiskennis });
-            cv.Kennis.Add(new Kennis() { id = 4, Kennisgebied = "Azure", Jaren = 2, Kennisniveau = Kennisniveau.Gemiddeld });
+            cv.Kennis.Add(new Kennis() { Id = 1, Kennisgebied = "Scrum", Jaren = 2, Kennisniveau = Kennisniveau.Gemiddeld });
+            cv.Kennis.Add(new Kennis() { Id = 2, Kennisgebied = "C#", Jaren = 3, Kennisniveau = Kennisniveau.Ervaren });
+            cv.Kennis.Add(new Kennis() { Id = 3, Kennisgebied = "ReactJS", Jaren = 1, Kennisniveau = Kennisniveau.Basiskennis });
+            cv.Kennis.Add(new Kennis() { Id = 4, Kennisgebied = "Azure", Jaren = 2, Kennisniveau = Kennisniveau.Gemiddeld });
 
             Save(cv);
 

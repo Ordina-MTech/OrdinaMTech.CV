@@ -5,7 +5,7 @@ namespace OrdinaMTech.Cv.Shared.Models
 {
     public class Kennis
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Kennisgebied { get; set; }       
         public Kennisniveau Kennisniveau { get; set; }

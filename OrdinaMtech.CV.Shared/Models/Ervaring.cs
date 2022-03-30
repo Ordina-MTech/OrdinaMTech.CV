@@ -4,7 +4,7 @@ namespace OrdinaMTech.Cv.Shared.Models
 {
     public class Ervaring
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public DateTime DatumVan { get; set; }
         public DateTime? DatumTm { get; set; }
         public string Organisatie { get; set; }
