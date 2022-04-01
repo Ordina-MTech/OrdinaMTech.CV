@@ -22,6 +22,7 @@ jobs:
           node-version: '16.x'
 
       - name: npm install, build, and test
+        working-directory: './OrdinaMTech.Cv.Angular/CVAngular'
         run: |
           npm install
           npm run build --if-present
