@@ -23,7 +23,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm install and npm run build
         run: |
-          working-directory: './OrdinaMTech.Cv.Angular/CVAngular/'
+          path: './OrdinaMTech.Cv.Angular/CVAngular/'
           npm i
           npm run build:prod
           
