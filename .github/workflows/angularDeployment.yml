@@ -24,6 +24,7 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
+        working-directory: './OrdinaMTech.Cv.Angular/CVAngular'
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
