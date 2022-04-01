@@ -25,6 +25,7 @@ jobs:
         run: |
           npm i
           npm run build:prod
+          working-directory: './OrdinaMTech.Cv.Angular/CVAngular/'
       - name: Push Build to Releases
         uses: ncipollo/release-action@v1
         with:
