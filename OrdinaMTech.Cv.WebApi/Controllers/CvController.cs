@@ -5,9 +5,11 @@ using Newtonsoft.Json;
 using OrdinaMTech.Cv.Shared.Enums;
 using OrdinaMTech.Cv.Shared.Models;
 using OrdinaMTech.Cv.WebApi.Filters;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.IO;
 
 namespace OrdinaMTech.Cv.Api.Controllers
 {
@@ -39,15 +41,19 @@ namespace OrdinaMTech.Cv.Api.Controllers
             try
             {
                 using var fileStream = file.OpenReadStream();
-                var bmp = ResizeImage(new Bitmap(fileStream));
-                var converter = new ImageConverter();
-                var contents = (byte[])converter.ConvertTo(bmp, typeof(byte[]));
+                using var image = Image.Load(fileStream);
+                var output = new MemoryStream();
+                image.Mutate(c => c.Resize(300, 300));
+                image.SaveAsBmp(output);
 
                 var cv = new Shared.Models.Cv();
                 Load(cv);
-                cv.Personalia.Foto = contents;
+                                
+                cv.Personalia.Foto = output.ToArray();
+
                 Save(cv);
-                return Ok(contents);
+
+                return Ok(cv.Personalia.Foto);
             }
             catch
             {
@@ -116,7 +122,7 @@ namespace OrdinaMTech.Cv.Api.Controllers
             System.IO.File.WriteAllText("cv.json", JsonConvert.SerializeObject(cv));
         }
 
-        private void Load(Shared.Models.Cv cv)
+        private static void Load(Shared.Models.Cv cv)
         {
             var data = JsonConvert.DeserializeObject<Shared.Models.Cv>(System.IO.File.ReadAllText("cv.json"));
             cv.Personalia = data.Personalia;
@@ -125,20 +131,6 @@ namespace OrdinaMTech.Cv.Api.Controllers
             cv.Werkervaring = data.Werkervaring;
             cv.Talen = data.Talen;
             cv.Kennis = data.Kennis;
-        }
-
-        private Bitmap ResizeImage(Bitmap src)
-        {
-            var bmp = new Bitmap(300, 300);
-            var g = Graphics.FromImage(bmp);
-
-            var scale = Math.Max((float)src.Width / 300.0f, (float)src.Height / 300.0f);
-            var p = new PointF(300.0f - ((float)src.Width / scale), 300.0f - ((float)src.Height / scale));
-            var size = new SizeF((float)src.Width / scale, (float)src.Height / scale);
-
-            g.DrawImage(src, new RectangleF(p, size));
-
-            return bmp;
         }
     }
 }
