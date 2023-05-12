@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OrdinaMTech.Cv.Data.Models
+﻿namespace OrdinaMTech.Cv.Data.Models
 {
     public class Cursus
     {

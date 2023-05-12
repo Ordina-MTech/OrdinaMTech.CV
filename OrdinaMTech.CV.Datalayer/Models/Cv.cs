@@ -1,21 +1,19 @@
-﻿using System.Collections.Generic;
-
-namespace OrdinaMTech.Cv.Data.Models
+﻿namespace OrdinaMTech.Cv.Data.Models
 {
     public class Cv
     {
         public int Id { get; set; }
 
-        public Personalia Personalia { get; set; }
+        public virtual Personalia? Personalia { get; set; }
 
-        public List<Opleiding> Opleidingen { get; set; }
+        public virtual IEnumerable<Opleiding>? Opleidingen { get; set; }
         
-        public List<Cursus> Cursussen { get; set; }
+        public virtual IEnumerable<Cursus>? Cursussen { get; set; }
 
-        public List<Ervaring> Werkervaring { get; set; }
+        public virtual IEnumerable<Ervaring>? Werkervaring { get; set; }
         
-        public List<Taal> Talen { get; set; }
+        public virtual IEnumerable<Taal>? Talen { get; set; }
 
-        public List<Kennis> Kennis { get; set; }
+        public virtual IEnumerable<Kennis>? Kennis { get; set; }
     }
 }
