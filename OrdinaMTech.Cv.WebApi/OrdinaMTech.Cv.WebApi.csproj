@@ -28,7 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OrdinaMTech.CV.Datalayer\OrdinaMTech.Cv.Data.csproj" />
-    <ProjectReference Include="..\OrdinaMtech.CV.Shared\OrdinaMtech.CV.Shared.csproj" />
   </ItemGroup>
 
 </Project>

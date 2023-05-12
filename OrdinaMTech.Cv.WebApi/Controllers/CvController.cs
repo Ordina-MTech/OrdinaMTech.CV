@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using OrdinaMTech.Cv.Shared.Enums;
-using OrdinaMTech.Cv.Shared.Models;
+using OrdinaMTech.Cv.Data;
+using OrdinaMTech.Cv.Data.Enums;
+using OrdinaMTech.Cv.Data.Models;
 using OrdinaMTech.Cv.WebApi.Filters;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
@@ -46,7 +47,7 @@ namespace OrdinaMTech.Cv.Api.Controllers
                 image.Mutate(c => c.Resize(300, 300));
                 image.SaveAsBmp(output);
 
-                var cv = new Shared.Models.Cv();
+                var cv = new Data.Models.Cv();
                 Load(cv);
                                 
                 cv.Personalia.Foto = output.ToArray();
@@ -68,7 +69,7 @@ namespace OrdinaMTech.Cv.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var result = new Shared.Models.Cv();
+            var result = new Data.Models.Cv();
             Load(result);
             return Ok(result);
         }
@@ -79,7 +80,7 @@ namespace OrdinaMTech.Cv.Api.Controllers
         [HttpPut]
         public IActionResult Put()
         {
-            var cv = new Shared.Models.Cv();
+            var cv = new Data.Models.Cv();
 
             cv.Personalia = new Personalia()
             {
@@ -117,14 +118,14 @@ namespace OrdinaMTech.Cv.Api.Controllers
             return Ok(cv);
         }
 
-        private void Save(Shared.Models.Cv cv)
+        private void Save(Data.Models.Cv cv)
         {
             System.IO.File.WriteAllText("cv.json", JsonConvert.SerializeObject(cv));
         }
 
-        private static void Load(Shared.Models.Cv cv)
+        private static void Load(Data.Models.Cv cv)
         {
-            var data = JsonConvert.DeserializeObject<Shared.Models.Cv>(System.IO.File.ReadAllText("cv.json"));
+            var data = JsonConvert.DeserializeObject<Data.Models.Cv>(System.IO.File.ReadAllText("cv.json"));
             cv.Personalia = data.Personalia;
             cv.Opleidingen = data.Opleidingen;
             cv.Cursussen = data.Cursussen;
