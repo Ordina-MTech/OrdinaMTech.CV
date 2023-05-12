@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OrdinaMTech.Cv.WebApi\OrdinaMTech.Cv.WebApi.csproj" />
-    <ProjectReference Include="..\OrdinaMTech.Cv.WebClient\OrdinaMTech.Cv.WebClient.csproj" />
+    <ProjectReference Include="..\OrdinaMTech.Cv.WebClient\OrdinaMTech.Cv.ReactJs.csproj" />
   </ItemGroup>
 
 </Project>

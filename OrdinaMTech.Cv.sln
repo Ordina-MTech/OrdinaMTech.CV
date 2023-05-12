@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdinaMTech.Cv.WebApi", "OrdinaMTech.Cv.WebApi\OrdinaMTech.Cv.WebApi.csproj", "{E0252AB2-43A0-4EB9-BE39-8B990160697C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdinaMTech.Cv.WebClient", "OrdinaMTech.Cv.WebClient\OrdinaMTech.Cv.WebClient.csproj", "{81FCD580-82AD-45D6-8274-1072F3DA5E49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdinaMTech.Cv.ReactJs", "OrdinaMTech.Cv.WebClient\OrdinaMTech.Cv.ReactJs.csproj", "{81FCD580-82AD-45D6-8274-1072F3DA5E49}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdinaMTech.Cv.Test", "OrdinaMTech.Cv.Test\OrdinaMTech.Cv.Test.csproj", "{109480B0-3D5B-465B-93CD-D0A7CAA058C5}"
 EndProject
