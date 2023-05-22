@@ -12,12 +12,10 @@ namespace OrdinaMTech.Cv.Api.Controllers
     public class CvController : ControllerBase
     {
         private readonly ILogger<CvController> _logger;
-        private readonly CvContext _cvContext;
 
-        public CvController(ILogger<CvController> logger, CvContext cvContext)
+        public CvController(ILogger<CvController> logger)
         {
-            _logger = logger;
-            _cvContext = cvContext;
+            _logger = logger;            
         }
 
         /// <summary>
@@ -42,11 +40,10 @@ namespace OrdinaMTech.Cv.Api.Controllers
                 image.Mutate(c => c.Resize(300, 300));
                 image.SaveAsBmp(output);
 
-                var cv = _cvContext.Cvs.First();                
-                                
+                var cv = new Data.Models.Cv();
+                Load(cv);                
                 cv.Personalia!.Foto = output.ToArray();
-
-                Update(cv);
+                Save(cv);                
 
                 return Ok(cv.Personalia.Foto);
             }
@@ -63,7 +60,8 @@ namespace OrdinaMTech.Cv.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var result = _cvContext.Cvs.FirstOrDefault();            
+            var result = new Data.Models.Cv();
+            Load(result);
             return Ok(result);
         }
 
@@ -73,12 +71,7 @@ namespace OrdinaMTech.Cv.Api.Controllers
         [HttpPut]
         public IActionResult Put()
         {
-            var cv = _cvContext.Cvs.FirstOrDefault();
-            if (cv == null)
-            {
-                cv = new Data.Models.Cv();
-            }
-
+            var cv = new Data.Models.Cv();
             cv.Personalia = new Personalia()
             {
                 Naam = "Denise Oostdam",
@@ -120,15 +113,25 @@ namespace OrdinaMTech.Cv.Api.Controllers
                 new Kennis() { Kennisgebied = "Azure", Jaren = 2, Kennisniveau = Kennisniveau.Gemiddeld }
             };
 
-            Update(cv);
+            Save(cv);
 
             return Ok(cv);
         }
 
-        private void Update(Data.Models.Cv cv)
+        private static void Save(Data.Models.Cv cv)
         {
-            _cvContext.Update(cv);
-            _cvContext.SaveChanges();
+            System.IO.File.WriteAllText("cv.json", JsonConvert.SerializeObject(cv));
+        }
+
+        private static void Load(Data.Models.Cv cv)
+        {
+            var data = JsonConvert.DeserializeObject<Data.Models.Cv>(System.IO.File.ReadAllText("cv.json"));
+            cv.Personalia = data?.Personalia;
+            cv.Opleidingen = data?.Opleidingen;
+            cv.Cursussen = data?.Cursussen;
+            cv.Werkervaring = data?.Werkervaring;
+            cv.Talen = data?.Talen;
+            cv.Kennis = data?.Kennis;
         }
     }
 }
