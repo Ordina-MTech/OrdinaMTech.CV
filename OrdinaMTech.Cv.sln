@@ -5,8 +5,6 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdinaMTech.Cv.WebApi", "OrdinaMTech.Cv.WebApi\OrdinaMTech.Cv.WebApi.csproj", "{E0252AB2-43A0-4EB9-BE39-8B990160697C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdinaMTech.Cv.ReactJS", "OrdinaMTech.Cv.WebClient\OrdinaMTech.Cv.ReactJS.csproj", "{81FCD580-82AD-45D6-8274-1072F3DA5E49}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdinaMTech.Cv.Test", "OrdinaMTech.Cv.Test\OrdinaMTech.Cv.Test.csproj", "{109480B0-3D5B-465B-93CD-D0A7CAA058C5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{901D9CE8-C383-41E5-B9B2-7D21C8C2CF35}"
@@ -16,7 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdinaMTech.Cv.BlazorApp", "OrdinaMTech.Cv.BlazorApp\OrdinaMTech.Cv.BlazorApp.csproj", "{9F6F1A3C-4619-4B91-9254-9983476A9076}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdinaMTech.Cv.Data", "OrdinaMTech.CV.Datalayer\OrdinaMTech.Cv.Data.csproj", "{9DD8B7E0-96DB-4827-92D9-9E2164B7EADA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdinaMTech.Cv.Data", "OrdinaMTech.CV.Data\OrdinaMTech.Cv.Data.csproj", "{9B785519-037B-4450-952B-F80190AA6527}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdinaMTech.Cv.ReactJS", "OrdinaMTech.Cv.ReactJS\OrdinaMTech.Cv.ReactJS.csproj", "{4D8728A0-5260-4414-921F-D200E5401F10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +28,6 @@ Global
 		{E0252AB2-43A0-4EB9-BE39-8B990160697C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0252AB2-43A0-4EB9-BE39-8B990160697C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0252AB2-43A0-4EB9-BE39-8B990160697C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{81FCD580-82AD-45D6-8274-1072F3DA5E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{81FCD580-82AD-45D6-8274-1072F3DA5E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{81FCD580-82AD-45D6-8274-1072F3DA5E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{81FCD580-82AD-45D6-8274-1072F3DA5E49}.Release|Any CPU.Build.0 = Release|Any CPU
 		{109480B0-3D5B-465B-93CD-D0A7CAA058C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{109480B0-3D5B-465B-93CD-D0A7CAA058C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{109480B0-3D5B-465B-93CD-D0A7CAA058C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -40,10 +36,14 @@ Global
 		{9F6F1A3C-4619-4B91-9254-9983476A9076}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F6F1A3C-4619-4B91-9254-9983476A9076}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F6F1A3C-4619-4B91-9254-9983476A9076}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9DD8B7E0-96DB-4827-92D9-9E2164B7EADA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9DD8B7E0-96DB-4827-92D9-9E2164B7EADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9DD8B7E0-96DB-4827-92D9-9E2164B7EADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9DD8B7E0-96DB-4827-92D9-9E2164B7EADA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B785519-037B-4450-952B-F80190AA6527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B785519-037B-4450-952B-F80190AA6527}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B785519-037B-4450-952B-F80190AA6527}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B785519-037B-4450-952B-F80190AA6527}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D8728A0-5260-4414-921F-D200E5401F10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D8728A0-5260-4414-921F-D200E5401F10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D8728A0-5260-4414-921F-D200E5401F10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D8728A0-5260-4414-921F-D200E5401F10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
