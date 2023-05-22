@@ -12,10 +12,12 @@ namespace OrdinaMTech.Cv.Api.Controllers
     public class CvController : ControllerBase
     {
         private readonly ILogger<CvController> _logger;
+        private readonly CvContext _cvContext;
 
-        public CvController(ILogger<CvController> logger)
+        public CvController(ILogger<CvController> logger, CvContext cvContext)
         {
-            _logger = logger;            
+            _logger = logger;
+            _cvContext = cvContext;
         }
 
         /// <summary>
@@ -24,14 +26,14 @@ namespace OrdinaMTech.Cv.Api.Controllers
         /// <param name="file">De nieuwe foto</param>
         [HttpPost]
         [Route("personalia/foto/upload")]
-        public IActionResult Upload([FromForm]IFormFile file)
+        public IActionResult Upload([FromForm] IFormFile file)
         {
             var maxSize = 1024 * 2000;
             if (file.Length > maxSize)
             {
                 return new UnprocessableEntityObjectResult("Bestand mag niet groter zijn dan " + maxSize / 1024 + "kB");
             }
-            
+
             try
             {
                 using var fileStream = file.OpenReadStream();
@@ -40,10 +42,11 @@ namespace OrdinaMTech.Cv.Api.Controllers
                 image.Mutate(c => c.Resize(300, 300));
                 image.SaveAsBmp(output);
 
-                var cv = new Data.Models.Cv();
-                Load(cv);                
+                var cv = _cvContext.Cvs.First();
+
                 cv.Personalia!.Foto = output.ToArray();
-                Save(cv);                
+
+                Update(cv);
 
                 return Ok(cv.Personalia.Foto);
             }
@@ -60,8 +63,7 @@ namespace OrdinaMTech.Cv.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var result = new Data.Models.Cv();
-            Load(result);
+            var result = _cvContext.Cvs.FirstOrDefault();
             return Ok(result);
         }
 
@@ -71,7 +73,12 @@ namespace OrdinaMTech.Cv.Api.Controllers
         [HttpPut]
         public IActionResult Put()
         {
-            var cv = new Data.Models.Cv();
+            var cv = _cvContext.Cvs.FirstOrDefault();
+            if (cv == null)
+            {
+                cv = new Data.Models.Cv();
+            }
+
             cv.Personalia = new Personalia()
             {
                 Naam = "Denise Oostdam",
@@ -113,25 +120,15 @@ namespace OrdinaMTech.Cv.Api.Controllers
                 new Kennis() { Kennisgebied = "Azure", Jaren = 2, Kennisniveau = Kennisniveau.Gemiddeld }
             };
 
-            Save(cv);
+            Update(cv);
 
             return Ok(cv);
         }
 
-        private static void Save(Data.Models.Cv cv)
+        private void Update(Data.Models.Cv cv)
         {
-            System.IO.File.WriteAllText("cv.json", JsonConvert.SerializeObject(cv));
-        }
-
-        private static void Load(Data.Models.Cv cv)
-        {
-            var data = JsonConvert.DeserializeObject<Data.Models.Cv>(System.IO.File.ReadAllText("cv.json"));
-            cv.Personalia = data?.Personalia;
-            cv.Opleidingen = data?.Opleidingen;
-            cv.Cursussen = data?.Cursussen;
-            cv.Werkervaring = data?.Werkervaring;
-            cv.Talen = data?.Talen;
-            cv.Kennis = data?.Kennis;
+            _cvContext.Update(cv);
+            _cvContext.SaveChanges();
         }
     }
 }
