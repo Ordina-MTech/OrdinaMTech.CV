@@ -2,7 +2,7 @@
 
 Deze Visual Studio 2022 solution is bedoeld voor een programmeertest bij de intake van nieuwe Ordina MTech ontwikkelaars.
 De solution bestaat uit een in ASP.NET 6 WebApi voor het beheer van een CV die wordt opgeslagen in een JSON bestand en een ReactJS webclient die het CV in een leesbaar formaat toont. Er is ook een Blazor webclient toegevoegd met dezelfde functionaliteit.
-Het is in deze webclient ook mogelijk om een nieuwe foto voor het CV te uploaden.
+Het is in deze webclients ook mogelijk om een nieuwe foto voor het CV te uploaden.
 
 Een werkende versie van de React applicatie staat hier: https://ordinamtechcvwebclient.azurewebsites.net/
 \
