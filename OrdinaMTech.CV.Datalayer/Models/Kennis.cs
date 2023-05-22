@@ -7,7 +7,7 @@ namespace OrdinaMTech.Cv.Data.Models
     {
         public int Id { get; set; }
         [Required]
-        public string Kennisgebied { get; set; }       
+        public string? Kennisgebied { get; set; }
         public Kennisniveau Kennisniveau { get; set; }
         public int Jaren { get; set; }
     }

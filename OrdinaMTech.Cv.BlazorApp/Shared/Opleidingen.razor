@@ -12,7 +12,7 @@
                         <div>Diploma: @(opleiding.Diploma ? "Ja" : "Nee")</div>
                     </div>
                     <div class="resume-date text-md-right">
-                        <span class="text-primary">@opleiding.DatumVan.ToString("MM/yyyy") - @opleiding.DatumTm.ToString("MM/yyyy")</span>
+                        <span class="text-primary">@opleiding.DatumVan.ToString("MM/yyyy") - @(opleiding.DatumTm != null ? opleiding.DatumTm.Value.ToString("MM/yyyy") : "heden")</span>
                     </div>
                 </div>
             }

@@ -5,8 +5,7 @@ namespace OrdinaMTech.Cv.Data
     public class CvContext : DbContext
     {
         public CvContext(DbContextOptions<CvContext> options) : base(options)
-        {
-            
+        {          
         }
 
         public DbSet<Models.Cv> Cvs { get; set; }
@@ -27,6 +26,5 @@ namespace OrdinaMTech.Cv.Data
             modelBuilder.Entity<Models.Taal>().ToTable("Taal");
             modelBuilder.Entity<Models.Personalia>().ToTable("Personalia");
         }
-
     }
 }
