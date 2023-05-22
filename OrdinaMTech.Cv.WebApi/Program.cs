@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using OrdinaMTech.Cv.Data;
 
 internal class Program
