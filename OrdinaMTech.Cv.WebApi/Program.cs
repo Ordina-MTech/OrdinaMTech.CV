@@ -12,8 +12,11 @@ internal class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddDbContext<CvContext>(options => options
+            .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
             .UseLazyLoadingProxies()
-            .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            .LogTo(Console.WriteLine)
+            .EnableSensitiveDataLogging()
+            .EnableDetailedErrors());
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
         builder.Services.AddCors(policyBuilder =>
             policyBuilder.AddDefaultPolicy(policy =>
