@@ -15,7 +15,10 @@ internal class Program
         builder.Services.AddDbContext<CvContext>(options => options
             .UseCosmos("https://cosmos-cv.documents.azure.com:443/"
             ,accountKey
-            ,databaseName: "Cv"));
+            ,databaseName: "Cv")            
+            .LogTo(Console.WriteLine)
+            .EnableSensitiveDataLogging()
+            .EnableDetailedErrors());
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
         builder.Services.AddCors(policyBuilder =>
             policyBuilder.AddDefaultPolicy(policy =>
