@@ -8,10 +8,10 @@
     <NavMenu naam=@cv.Personalia.Naam />
     <div className="container-fluid p-0">
         <Personalia personalia=@cv.Personalia />
-        <Opleidingen opleidingen=@cv.Opleidingen />
-        <Cursussen cursussen=@cv.Cursussen />
-        <Werkervaring werkervaring=@cv.Werkervaring />
-        <Kennis kennis=@cv.Kennis />
+        <Opleidingen opleidingen=@cv.Opleidingen.ToList() />
+        <Cursussen cursussen=@cv.Cursussen.ToList() />
+        <Werkervaring werkervaring=@cv.Werkervaring.ToList() />
+        <Kennis kennis=@cv.Kennis.ToList() />
     </div>
 }
 else
@@ -20,7 +20,7 @@ else
 }
 
 @code {
-    private OrdinaMTech.Cv.Shared.Models.Cv cv;
+    private OrdinaMTech.Cv.Data.Models.Cv cv;
 
     protected override async Task OnInitializedAsync()
     {

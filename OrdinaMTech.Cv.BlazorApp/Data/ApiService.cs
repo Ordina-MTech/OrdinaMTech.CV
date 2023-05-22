@@ -14,14 +14,14 @@ namespace OrdinaMTech.Cv.BlazorApp.Data
             _httpClient = client;
         }
 
-        public async Task<Cv.Shared.Models.Cv> GetCvAsync()
+        public async Task<Cv.Data.Models.Cv> GetCvAsync()
         {
             var response = await _httpClient.GetAsync("cv");
             response.EnsureSuccessStatusCode();
 
             using var stream = await response.Content.ReadAsStreamAsync();
             var jsonReader = new StreamReader(stream).ReadToEnd();
-            return JsonConvert.DeserializeObject<Cv.Shared.Models.Cv>(jsonReader);
+            return JsonConvert.DeserializeObject<Cv.Data.Models.Cv>(jsonReader);
         }
 
         public async Task<HttpResponseMessage> UploadFotoAsync(HttpContent file)

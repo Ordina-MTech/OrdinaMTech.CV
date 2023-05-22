@@ -1,5 +1,4 @@
-﻿@using BlazorInputFile;
-@using Newtonsoft.Json;
+﻿@using Newtonsoft.Json;
 @using System.IO;
 @inject Data.ApiService apiService;
 
@@ -15,7 +14,7 @@
     }
     <label class="btn">
         <span class="edit fas fa-edit fa-lg"></span>
-        <span class="d-none"><InputFile OnChange="HandleSelection" /></span>
+        <span class="d-none"><BlazorInputFile.InputFile OnChange="HandleSelection" /></span>
     </label>
 </div>
 
