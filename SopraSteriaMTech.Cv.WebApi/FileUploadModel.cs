@@ -1,8 +1,6 @@
-﻿
-namespace SopraSteriaMTech.Cv.Data.Models
+﻿namespace SopraSteriaMTech.Cv.Data.Models;
+
+public class FileUploadModel
 {
-    public class FileUploadModel
-    {
-        public IFormFile File { get; set; }
-    }
+    public required IFormFile File { get; set; }
 }

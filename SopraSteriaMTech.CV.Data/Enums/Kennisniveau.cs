@@ -1,12 +1,11 @@
-﻿namespace SopraSteriaMTech.Cv.Data.Enums
+﻿namespace SopraSteriaMTech.Cv.Data.Enums;
+
+public enum Kennisniveau
 {
-    public enum Kennisniveau
-    {
-        Geen = 0,
-        Basiskennis,
-        Gemiddeld,
-        Ervaren,
-        ZeerErvaren,
-        Expert
-    }
+    Geen = 0,
+    Basiskennis,
+    Gemiddeld,
+    Ervaren,
+    ZeerErvaren,
+    Expert
 }

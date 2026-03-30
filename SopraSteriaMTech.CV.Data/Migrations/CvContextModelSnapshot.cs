@@ -8,297 +8,296 @@ using SopraSteriaMTech.Cv.Data;
 
 #nullable disable
 
-namespace SopraSteriaMTech.Cv.Data.Migrations
+namespace SopraSteriaMTech.Cv.Data.Migrations;
+
+[DbContext(typeof(CvContext))]
+partial class CvContextModelSnapshot : ModelSnapshot
 {
-    [DbContext(typeof(CvContext))]
-    partial class CvContextModelSnapshot : ModelSnapshot
+    protected override void BuildModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.7")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+        modelBuilder
+            .HasAnnotation("ProductVersion", "8.0.7")
+            .HasAnnotation("Proxies:ChangeTracking", false)
+            .HasAnnotation("Proxies:CheckEquality", false)
+            .HasAnnotation("Proxies:LazyLoading", true)
+            .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+        SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Cursus", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Cursus", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool?>("Certificaat")
-                        .HasColumnType("bit");
+                b.Property<bool?>("Certificaat")
+                    .HasColumnType("bit");
 
-                    b.Property<int>("CvId")
-                        .HasColumnType("int");
+                b.Property<int>("CvId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("Datum")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("Datum")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Instituut")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Instituut")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Naam")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Naam")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CvId");
+                b.HasIndex("CvId");
 
-                    b.ToTable("Cursus", (string)null);
-                });
+                b.ToTable("Cursus", (string)null);
+            });
 
-            modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Cv", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Cv", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("PersonaliaId")
-                        .HasColumnType("int");
+                b.Property<int>("PersonaliaId")
+                    .HasColumnType("int");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("PersonaliaId");
+                b.HasIndex("PersonaliaId");
 
-                    b.ToTable("Cv", (string)null);
-                });
+                b.ToTable("Cv", (string)null);
+            });
 
-            modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Ervaring", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Ervaring", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Beschrijving")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Beschrijving")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CvId")
-                        .HasColumnType("int");
+                b.Property<int>("CvId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime?>("DatumTm")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DatumTm")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DatumVan")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("DatumVan")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Functie")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Functie")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Organisatie")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Organisatie")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Project")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Project")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CvId");
+                b.HasIndex("CvId");
 
-                    b.ToTable("Werkervaring", (string)null);
-                });
+                b.ToTable("Werkervaring", (string)null);
+            });
 
-            modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Kennis", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Kennis", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CvId")
-                        .HasColumnType("int");
+                b.Property<int>("CvId")
+                    .HasColumnType("int");
 
-                    b.Property<int>("Jaren")
-                        .HasColumnType("int");
+                b.Property<int>("Jaren")
+                    .HasColumnType("int");
 
-                    b.Property<string>("Kennisgebied")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Kennisgebied")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Kennisniveau")
-                        .HasColumnType("int");
+                b.Property<int>("Kennisniveau")
+                    .HasColumnType("int");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CvId");
+                b.HasIndex("CvId");
 
-                    b.ToTable("Kennis", (string)null);
-                });
+                b.ToTable("Kennis", (string)null);
+            });
 
-            modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Opleiding", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Opleiding", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CvId")
-                        .HasColumnType("int");
+                b.Property<int>("CvId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime?>("DatumTm")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DatumTm")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DatumVan")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("DatumVan")
+                    .HasColumnType("datetime2");
 
-                    b.Property<bool>("Diploma")
-                        .HasColumnType("bit");
+                b.Property<bool>("Diploma")
+                    .HasColumnType("bit");
 
-                    b.Property<string>("Niveau")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Niveau")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("School")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("School")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CvId");
+                b.HasIndex("CvId");
 
-                    b.ToTable("Opleiding", (string)null);
-                });
+                b.ToTable("Opleiding", (string)null);
+            });
 
-            modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Personalia", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Personalia", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<byte[]>("Foto")
-                        .HasColumnType("varbinary(max)");
+                b.Property<byte[]>("Foto")
+                    .HasColumnType("varbinary(max)");
 
-                    b.Property<DateTime>("Geboortedatum")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("Geboortedatum")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Hobbies")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Hobbies")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Naam")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Naam")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Woonplaats")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Woonplaats")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Personalia", (string)null);
-                });
+                b.ToTable("Personalia", (string)null);
+            });
 
-            modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Taal", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Taal", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CvId")
-                        .HasColumnType("int");
+                b.Property<int>("CvId")
+                    .HasColumnType("int");
 
-                    b.Property<int>("Mondeling")
-                        .HasColumnType("int");
+                b.Property<int>("Mondeling")
+                    .HasColumnType("int");
 
-                    b.Property<string>("Naam")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Naam")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Schriftelijk")
-                        .HasColumnType("int");
+                b.Property<int>("Schriftelijk")
+                    .HasColumnType("int");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CvId");
+                b.HasIndex("CvId");
 
-                    b.ToTable("Taal", (string)null);
-                });
+                b.ToTable("Taal", (string)null);
+            });
 
-            modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Cursus", b =>
-                {
-                    b.HasOne("SopraSteriaMTech.Cv.Data.Models.Cv", null)
-                        .WithMany("Cursussen")
-                        .HasForeignKey("CvId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+        modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Cursus", b =>
+            {
+                b.HasOne("SopraSteriaMTech.Cv.Data.Models.Cv", null)
+                    .WithMany("Cursussen")
+                    .HasForeignKey("CvId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
 
-            modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Cv", b =>
-                {
-                    b.HasOne("SopraSteriaMTech.Cv.Data.Models.Personalia", "Personalia")
-                        .WithMany()
-                        .HasForeignKey("PersonaliaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+        modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Cv", b =>
+            {
+                b.HasOne("SopraSteriaMTech.Cv.Data.Models.Personalia", "Personalia")
+                    .WithMany()
+                    .HasForeignKey("PersonaliaId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Personalia");
-                });
+                b.Navigation("Personalia");
+            });
 
-            modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Ervaring", b =>
-                {
-                    b.HasOne("SopraSteriaMTech.Cv.Data.Models.Cv", null)
-                        .WithMany("Werkervaring")
-                        .HasForeignKey("CvId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+        modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Ervaring", b =>
+            {
+                b.HasOne("SopraSteriaMTech.Cv.Data.Models.Cv", null)
+                    .WithMany("Werkervaring")
+                    .HasForeignKey("CvId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
 
-            modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Kennis", b =>
-                {
-                    b.HasOne("SopraSteriaMTech.Cv.Data.Models.Cv", null)
-                        .WithMany("Kennis")
-                        .HasForeignKey("CvId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+        modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Kennis", b =>
+            {
+                b.HasOne("SopraSteriaMTech.Cv.Data.Models.Cv", null)
+                    .WithMany("Kennis")
+                    .HasForeignKey("CvId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
 
-            modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Opleiding", b =>
-                {
-                    b.HasOne("SopraSteriaMTech.Cv.Data.Models.Cv", null)
-                        .WithMany("Opleidingen")
-                        .HasForeignKey("CvId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+        modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Opleiding", b =>
+            {
+                b.HasOne("SopraSteriaMTech.Cv.Data.Models.Cv", null)
+                    .WithMany("Opleidingen")
+                    .HasForeignKey("CvId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
 
-            modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Taal", b =>
-                {
-                    b.HasOne("SopraSteriaMTech.Cv.Data.Models.Cv", null)
-                        .WithMany("Talen")
-                        .HasForeignKey("CvId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+        modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Taal", b =>
+            {
+                b.HasOne("SopraSteriaMTech.Cv.Data.Models.Cv", null)
+                    .WithMany("Talen")
+                    .HasForeignKey("CvId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
 
-            modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Cv", b =>
-                {
-                    b.Navigation("Cursussen");
+        modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Cv", b =>
+            {
+                b.Navigation("Cursussen");
 
-                    b.Navigation("Kennis");
+                b.Navigation("Kennis");
 
-                    b.Navigation("Opleidingen");
+                b.Navigation("Opleidingen");
 
-                    b.Navigation("Talen");
+                b.Navigation("Talen");
 
-                    b.Navigation("Werkervaring");
-                });
+                b.Navigation("Werkervaring");
+            });
 #pragma warning restore 612, 618
-        }
     }
 }

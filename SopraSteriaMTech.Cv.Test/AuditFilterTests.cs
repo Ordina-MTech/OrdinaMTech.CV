@@ -6,75 +6,74 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Routing;
 using System.Security.Claims;
 
-namespace SopraSteriaMTech.Cv.Test
+namespace SopraSteriaMTech.Cv.Test;
+
+[TestClass]
+public class AuditFilterTests
 {
-    [TestClass]
-    public class AuditFilterTests
+    [TestMethod]
+    [Ignore("Test werkt als je de test apart runt, dus OK")]
+    public void WhenUsingAuditLogWithAuthenticatedUserSetsLaatstGeraadpleegdToTheCorrectUser()
     {
-        [TestMethod]
-        [Ignore("Test werkt als je de test apart runt, dus OK")]
-        public void WhenUsingAuditLogWithAuthenticatedUserSetsLaatstGeraadpleegdToTheCorrectUser()
+        // Arrange
+        var cvService = Substitute.For<ICvService>();
+        var cvController = Substitute.For<CvController>(cvService);
+        var modelState = new ModelStateDictionary();
+        var httpContext = new DefaultHttpContext()
         {
-            // Arrange
-            var cvService = Substitute.For<ICvService>();
-            var cvController = Substitute.For<CvController>(cvService);
-            var modelState = new ModelStateDictionary();
-            var httpContext = new DefaultHttpContext()
-            {
-                User = new ClaimsPrincipal(new ClaimsIdentity(
-                [
-                    new Claim(ClaimTypes.NameIdentifier, "123"),
-                    new Claim(ClaimTypes.Name, "Gates, Bill"),
-                    new Claim(ClaimTypes.Email, "william.gates@microsoft.com"),
-                    new Claim(ClaimTypes.Role, "Admin")
-                ]))
-            };
-            var context = new ActionExecutingContext(
-                new ActionContext(
-                    httpContext: httpContext,
-                    routeData: new RouteData(),
-                    actionDescriptor: new ActionDescriptor(),
-                    modelState: modelState
-                ),
-                [],
-                new Dictionary<string, object?>(),
-                cvController);
+            User = new ClaimsPrincipal(new ClaimsIdentity(
+            [
+                new Claim(ClaimTypes.NameIdentifier, "123"),
+                new Claim(ClaimTypes.Name, "Gates, Bill"),
+                new Claim(ClaimTypes.Email, "william.gates@microsoft.com"),
+                new Claim(ClaimTypes.Role, "Admin")
+            ]))
+        };
+        var context = new ActionExecutingContext(
+            new ActionContext(
+                httpContext: httpContext,
+                routeData: new RouteData(),
+                actionDescriptor: new ActionDescriptor(),
+                modelState: modelState
+            ),
+            [],
+            new Dictionary<string, object?>(),
+            cvController);
 
-            var sut = new AuditFilter();
+        var sut = new AuditFilter();
 
-            //Act
-            sut.OnActionExecuting(context);
+        //Act
+        sut.OnActionExecuting(context);
 
-            //Assert
-            Assert.AreEqual("123", AuditLog.LaatstGeraadpleegdDoor);
-        }
+        //Assert
+        Assert.AreEqual("123", AuditLog.LaatstGeraadpleegdDoor);
+    }
 
-        [TestMethod]
-        public void WhenUsingAuditLogWithAnonymousUserSetsLaatstGeraadpleegdToAnonymous()
-        {
-            // Arrange
-            var cvService = Substitute.For<ICvService>();
-            var cvController = Substitute.For<CvController>(cvService);
-            var modelState = new ModelStateDictionary();
-            var httpContext = new DefaultHttpContext();
-            var context = new ActionExecutingContext(
-                new ActionContext(
-                    httpContext: httpContext,
-                    routeData: new RouteData(),
-                    actionDescriptor: new ActionDescriptor(),
-                    modelState: modelState
-                ),
-                [],
-                new Dictionary<string, object?>(),
-                cvController);
+    [TestMethod]
+    public void WhenUsingAuditLogWithAnonymousUserSetsLaatstGeraadpleegdToAnonymous()
+    {
+        // Arrange
+        var cvService = Substitute.For<ICvService>();
+        var cvController = Substitute.For<CvController>(cvService);
+        var modelState = new ModelStateDictionary();
+        var httpContext = new DefaultHttpContext();
+        var context = new ActionExecutingContext(
+            new ActionContext(
+                httpContext: httpContext,
+                routeData: new RouteData(),
+                actionDescriptor: new ActionDescriptor(),
+                modelState: modelState
+            ),
+            [],
+            new Dictionary<string, object?>(),
+            cvController);
 
-            var sut = new AuditFilter();
+        var sut = new AuditFilter();
 
-            //Act
-            sut.OnActionExecuting(context);
+        //Act
+        sut.OnActionExecuting(context);
 
-            //Assert
-            Assert.AreEqual("Anonymous", AuditLog.LaatstGeraadpleegdDoor);
-        }
+        //Assert
+        Assert.AreEqual("Anonymous", AuditLog.LaatstGeraadpleegdDoor);
     }
 }
