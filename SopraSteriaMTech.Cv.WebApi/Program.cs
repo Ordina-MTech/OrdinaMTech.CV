@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
 using SopraSteriaMTech.Cv.Data;
 using SopraSteriaMTech.Cv.WebApi.Services;
 
@@ -11,7 +12,7 @@ internal class Program
         // Add services to the container.
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddOpenApi();
         builder.Services.AddDbContext<CvContext>(options => options
             .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
             .UseLazyLoadingProxies()
@@ -32,8 +33,8 @@ internal class Program
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
-            app.UseSwagger();
-            app.UseSwaggerUI();
+            app.MapOpenApi();
+            app.MapScalarApiReference();
         }
         app.UseHttpsRedirection();
         app.UseAuthorization();
@@ -42,21 +43,19 @@ internal class Program
         app.Run();
     }
 
-    private static void CreateDbIfNotExists(IHost host)
+    private static void CreateDbIfNotExists(WebApplication host)
     {
-        using (var scope = host.Services.CreateScope())
+        using var scope = host.Services.CreateScope();
+        var services = scope.ServiceProvider;
+        try
         {
-            var services = scope.ServiceProvider;
-            try
-            {
-                var context = services.GetRequiredService<CvContext>();
-                DbInitializer.Initialize(context);
-            }
-            catch (Exception ex)
-            {
-                var logger = services.GetRequiredService<ILogger<Program>>();
-                logger.LogError(ex, "An error occurred creating the DB.");
-            }
+            var context = services.GetRequiredService<CvContext>();
+            DbInitializer.Initialize(context);
+        }
+        catch (Exception ex)
+        {
+            var logger = services.GetRequiredService<ILogger<Program>>();
+            logger.LogError(ex, "An error occurred creating the DB.");
         }
     }
 }
