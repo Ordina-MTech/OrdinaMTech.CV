@@ -1,9 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.IO;
-using System.Net.Http;
-using System.Threading.Tasks;
-
-namespace SopraSteriaMTech.Cv.BlazorApp.Data;
+﻿namespace SopraSteriaMTech.Cv.BlazorApp.Data;
 
 public class ApiService
 {
@@ -18,10 +13,7 @@ public class ApiService
     {
         var response = await _httpClient.GetAsync("cv");
         response.EnsureSuccessStatusCode();
-
-        using var stream = await response.Content.ReadAsStreamAsync();
-        var jsonReader = new StreamReader(stream).ReadToEnd();
-        return JsonConvert.DeserializeObject<Cv.Data.Models.Cv>(jsonReader);
+        return await response.Content.ReadFromJsonAsync<Cv.Data.Models.Cv>();
     }
 
     public async Task<HttpResponseMessage> UploadFotoAsync(HttpContent file)

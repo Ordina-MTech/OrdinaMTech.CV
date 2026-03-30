@@ -1,5 +1,4 @@
-﻿@using Newtonsoft.Json;
-@using System.IO;
+﻿@using System.IO;
 @inject Data.ApiService apiService;
 
 <div class="profile-pic float-right">
@@ -43,9 +42,7 @@
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     status = string.Empty;
-                    using var stream = await response.Content.ReadAsStreamAsync();
-                    var jsonReader = new StreamReader(stream).ReadToEnd();
-                    foto = JsonConvert.DeserializeObject<byte[]>(jsonReader);
+                    foto = await response.Content.ReadFromJsonAsync<byte[]>();
                 }
                 else
                 {
