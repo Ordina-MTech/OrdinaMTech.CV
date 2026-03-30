@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".github/workflows/deploy_angular.yml" />
+    <File Path=".github/workflows/deploy_api.yml" />
+    <File Path=".github/workflows/deploy_blazor.yml" />
+    <File Path="readme.md" />
+  </Folder>
+  <Project Path="SopraSteriaMTech.Cv.Angular/SopraSteriaMTech.Cv.Angular.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="SopraSteriaMTech.Cv.BlazorApp/SopraSteriaMTech.Cv.BlazorApp.csproj" />
+  <Project Path="SopraSteriaMTech.CV.Data/SopraSteriaMTech.Cv.Data.csproj" />
+  <Project Path="SopraSteriaMTech.Cv.Test/SopraSteriaMTech.Cv.Test.csproj" />
+  <Project Path="SopraSteriaMTech.Cv.WebApi/SopraSteriaMTech.Cv.WebApi.csproj" />
+</Solution>
