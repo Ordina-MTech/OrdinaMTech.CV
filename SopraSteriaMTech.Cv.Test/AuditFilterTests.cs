@@ -4,12 +4,6 @@ using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using SopraSteriaMTech.Cv.Api.Controllers;
-using SopraSteriaMTech.Cv.WebApi.Filters;
-using SopraSteriaMTech.Cv.WebApi.Services;
-using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace SopraSteriaMTech.Cv.Test
@@ -22,17 +16,18 @@ namespace SopraSteriaMTech.Cv.Test
         public void WhenUsingAuditLogWithAuthenticatedUserSetsLaatstGeraadpleegdToTheCorrectUser()
         {
             // Arrange
-            var mockedCvService = new Mock<ICvService>();
+            var cvService = Substitute.For<ICvService>();
+            var cvController = Substitute.For<CvController>(cvService);
             var modelState = new ModelStateDictionary();
             var httpContext = new DefaultHttpContext()
             {
-                User = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
-                {
+                User = new ClaimsPrincipal(new ClaimsIdentity(
+                [
                     new Claim(ClaimTypes.NameIdentifier, "123"),
                     new Claim(ClaimTypes.Name, "Gates, Bill"),
                     new Claim(ClaimTypes.Email, "william.gates@microsoft.com"),
                     new Claim(ClaimTypes.Role, "Admin")
-                }))
+                ]))
             };
             var context = new ActionExecutingContext(
                 new ActionContext(
@@ -41,9 +36,9 @@ namespace SopraSteriaMTech.Cv.Test
                     actionDescriptor: new ActionDescriptor(),
                     modelState: modelState
                 ),
-                new List<IFilterMetadata>(),
-                new Dictionary<string, object>(),
-                new Mock<CvController>(mockedCvService.Object).Object);
+                [],
+                new Dictionary<string, object?>(),
+                cvController);
 
             var sut = new AuditFilter();
 
@@ -58,7 +53,8 @@ namespace SopraSteriaMTech.Cv.Test
         public void WhenUsingAuditLogWithAnonymousUserSetsLaatstGeraadpleegdToAnonymous()
         {
             // Arrange
-            var mockedCvService = new Mock<ICvService>();
+            var cvService = Substitute.For<ICvService>();
+            var cvController = Substitute.For<CvController>(cvService);
             var modelState = new ModelStateDictionary();
             var httpContext = new DefaultHttpContext();
             var context = new ActionExecutingContext(
@@ -68,9 +64,9 @@ namespace SopraSteriaMTech.Cv.Test
                     actionDescriptor: new ActionDescriptor(),
                     modelState: modelState
                 ),
-                new List<IFilterMetadata>(),
-                new Dictionary<string, object>(),
-                new Mock<CvController>(mockedCvService.Object).Object);
+                [],
+                new Dictionary<string, object?>(),
+                cvController);
 
             var sut = new AuditFilter();
 
