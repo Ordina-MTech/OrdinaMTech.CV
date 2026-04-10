@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
-using SopraSteriaMTech.Cv.WebApi.Services;
 using System.Security.Claims;
 
-namespace SopraSteriaMTech.Cv.WebApi.Filters
+namespace SopraSteriaMTech.Cv.WebApi.Filters;
+
+public class AuditFilter : ActionFilterAttribute
 {
-    public class AuditFilter : ActionFilterAttribute
+    public override void OnActionExecuting(ActionExecutingContext context)
     {
-        public override void OnActionExecuting(ActionExecutingContext context)
-        {
-            AuditLog.LaatstGeraadpleegdDoor = context.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "Anonymous";
-        }
+        AuditLog.LaatstGeraadpleegdDoor = context.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "Anonymous";
     }
 }

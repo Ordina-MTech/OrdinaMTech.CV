@@ -1,10 +1,9 @@
-﻿namespace SopraSteriaMTech.Cv.Data
+﻿namespace SopraSteriaMTech.Cv.Data;
+
+public static class DbInitializer
 {
-    public static class DbInitializer
+    public static void Initialize(CvContext context)
     {
-        public static void Initialize(CvContext context)
-        {
-            context.Database.EnsureCreated();
-        }
+        context.Database.EnsureCreated();
     }
 }

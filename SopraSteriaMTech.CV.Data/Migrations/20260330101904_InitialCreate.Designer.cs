@@ -10,18 +10,17 @@ using SopraSteriaMTech.Cv.Data;
 #nullable disable
 
 namespace SopraSteriaMTech.Cv.Data.Migrations
-
 {
     [DbContext(typeof(CvContext))]
-    [Migration("20240805110203_Initial")]
-    partial class Initial
+    [Migration("20260330101904_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.7")
+                .HasAnnotation("ProductVersion", "10.0.5")
                 .HasAnnotation("Proxies:ChangeTracking", false)
                 .HasAnnotation("Proxies:CheckEquality", false)
                 .HasAnnotation("Proxies:LazyLoading", true)
@@ -56,7 +55,7 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
 
                     b.HasIndex("CvId");
 
-                    b.ToTable("Cursus", (string)null);
+                    b.ToTable("Cursussen");
                 });
 
             modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Cv", b =>
@@ -74,7 +73,7 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
 
                     b.HasIndex("PersonaliaId");
 
-                    b.ToTable("Cv", (string)null);
+                    b.ToTable("Cvs");
                 });
 
             modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Ervaring", b =>
@@ -112,7 +111,7 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
 
                     b.HasIndex("CvId");
 
-                    b.ToTable("Werkervaring", (string)null);
+                    b.ToTable("Werkervaring");
                 });
 
             modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Kennis", b =>
@@ -140,7 +139,7 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
 
                     b.HasIndex("CvId");
 
-                    b.ToTable("Kennis", (string)null);
+                    b.ToTable("Kennis");
                 });
 
             modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Opleiding", b =>
@@ -174,7 +173,7 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
 
                     b.HasIndex("CvId");
 
-                    b.ToTable("Opleiding", (string)null);
+                    b.ToTable("Opleidingen");
                 });
 
             modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Personalia", b =>
@@ -203,7 +202,7 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Personalia", (string)null);
+                    b.ToTable("Personalia");
                 });
 
             modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Taal", b =>
@@ -231,7 +230,7 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
 
                     b.HasIndex("CvId");
 
-                    b.ToTable("Taal", (string)null);
+                    b.ToTable("Talen");
                 });
 
             modelBuilder.Entity("SopraSteriaMTech.Cv.Data.Models.Cursus", b =>

@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace SopraSteriaMTech.Cv.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -28,7 +29,7 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cv",
+                name: "Cvs",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -37,9 +38,9 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cv", x => x.Id);
+                    table.PrimaryKey("PK_Cvs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cv_Personalia_PersonaliaId",
+                        name: "FK_Cvs_Personalia_PersonaliaId",
                         column: x => x.PersonaliaId,
                         principalTable: "Personalia",
                         principalColumn: "Id",
@@ -47,7 +48,7 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cursus",
+                name: "Cursussen",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -60,11 +61,11 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cursus", x => x.Id);
+                    table.PrimaryKey("PK_Cursussen", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cursus_Cv_CvId",
+                        name: "FK_Cursussen_Cvs_CvId",
                         column: x => x.CvId,
-                        principalTable: "Cv",
+                        principalTable: "Cvs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -84,15 +85,15 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
                 {
                     table.PrimaryKey("PK_Kennis", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Kennis_Cv_CvId",
+                        name: "FK_Kennis_Cvs_CvId",
                         column: x => x.CvId,
-                        principalTable: "Cv",
+                        principalTable: "Cvs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Opleiding",
+                name: "Opleidingen",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -106,17 +107,17 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Opleiding", x => x.Id);
+                    table.PrimaryKey("PK_Opleidingen", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Opleiding_Cv_CvId",
+                        name: "FK_Opleidingen_Cvs_CvId",
                         column: x => x.CvId,
-                        principalTable: "Cv",
+                        principalTable: "Cvs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Taal",
+                name: "Talen",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -128,11 +129,11 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Taal", x => x.Id);
+                    table.PrimaryKey("PK_Talen", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Taal_Cv_CvId",
+                        name: "FK_Talen_Cvs_CvId",
                         column: x => x.CvId,
-                        principalTable: "Cv",
+                        principalTable: "Cvs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -155,21 +156,21 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
                 {
                     table.PrimaryKey("PK_Werkervaring", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Werkervaring_Cv_CvId",
+                        name: "FK_Werkervaring_Cvs_CvId",
                         column: x => x.CvId,
-                        principalTable: "Cv",
+                        principalTable: "Cvs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cursus_CvId",
-                table: "Cursus",
+                name: "IX_Cursussen_CvId",
+                table: "Cursussen",
                 column: "CvId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cv_PersonaliaId",
-                table: "Cv",
+                name: "IX_Cvs_PersonaliaId",
+                table: "Cvs",
                 column: "PersonaliaId");
 
             migrationBuilder.CreateIndex(
@@ -178,13 +179,13 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
                 column: "CvId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Opleiding_CvId",
-                table: "Opleiding",
+                name: "IX_Opleidingen_CvId",
+                table: "Opleidingen",
                 column: "CvId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Taal_CvId",
-                table: "Taal",
+                name: "IX_Talen_CvId",
+                table: "Talen",
                 column: "CvId");
 
             migrationBuilder.CreateIndex(
@@ -197,22 +198,22 @@ namespace SopraSteriaMTech.Cv.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Cursus");
+                name: "Cursussen");
 
             migrationBuilder.DropTable(
                 name: "Kennis");
 
             migrationBuilder.DropTable(
-                name: "Opleiding");
+                name: "Opleidingen");
 
             migrationBuilder.DropTable(
-                name: "Taal");
+                name: "Talen");
 
             migrationBuilder.DropTable(
                 name: "Werkervaring");
 
             migrationBuilder.DropTable(
-                name: "Cv");
+                name: "Cvs");
 
             migrationBuilder.DropTable(
                 name: "Personalia");
